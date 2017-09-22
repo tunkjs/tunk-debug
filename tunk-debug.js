@@ -3,7 +3,6 @@
     function debug(utils) {
         var tunk = this;
         var hooks = [
-            'store',
             'createModule',
             'override',
             'initModule',
