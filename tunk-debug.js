@@ -9,7 +9,6 @@
             'callAction',
             'runMiddlewares',
             'store',
-            'updateComponentState',
             'getValueFromStore'
         ];
         for (var i = 0; i < hooks.length; i++) {
