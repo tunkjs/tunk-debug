@@ -1,4 +1,4 @@
-# 架构性组件：tunk-debug
+# tunk-debug
 
 tunk开发的debug工具，可全局或精确配置到debug某个方法，设置了 debug:true 之后的动作执行，在console中会有相应详细信息输出
 
