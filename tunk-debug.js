@@ -2,15 +2,7 @@
 
     function debug(utils) {
         var tunk = this;
-        var hooks = [
-            'createModule',
-            'override',
-            'initModule',
-            'callAction',
-            'runMiddlewares',
-            'store',
-            'getValueFromStore'
-        ];
+        var hooks = Object.keys(utils.hooks);
         for (var i = 0; i < hooks.length; i++) {
             (function(hook){
                 utils.hook(hook, function (origin) {
