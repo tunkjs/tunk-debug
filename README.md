@@ -9,7 +9,7 @@ npm install tunk-debug
 ````
 ````javascript
 import tunkDebug from 'tunk-debug'
-tunk.use(tunkDebug);
+tunk.use([tunkDebug]);
 ````
 ## Config
 #### debug:[true | false] default: false 
