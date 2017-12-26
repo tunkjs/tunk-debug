@@ -1,6 +1,6 @@
 {
   "name": "tunk-debug",
-  "version": "3.0.1",
+  "version": "3.5.0",
   "description": "debug tools for tunk",
   "main": "tunk-debug.js",
   "author": "steven chen <522702986@qq.com>",

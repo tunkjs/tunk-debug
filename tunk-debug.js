@@ -7,13 +7,26 @@
             (function(hook){
                 utils.hook(hook, function (origin) {
                     return function () {
-                        if (arguments[arguments.length - 1].debug) {
-                            var args = Array.prototype.slice.call(arguments, 0, arguments.length), toShow = [];
-                            console.groupCollapsed('[tunk-debug]: ' + hook);
-                            for(var i=0; i<args.length; i++){
-                                console.log(args[i]);
+                        var debug = arguments[arguments.length - 1].debug;
+                        if (debug) {
+                            if(debug && typeof debug === 'object'){
+                                if(debug[hook] || debug.constructor === Array && debug.indexOf(hook) > -1){
+                                    var args = Array.prototype.slice.call(arguments, 0, arguments.length), toShow = [];
+                                    console.groupCollapsed('[tunk-debug]: ' + hook);
+                                    for(var i=0; i<args.length; i++){
+                                        console.log(args[i]);
+                                    }
+                                    console.groupEnd('[tunk-debug]: ' + hook);
+                                }
+                            } else {
+                                var args = Array.prototype.slice.call(arguments, 0, arguments.length), toShow = [];
+                                console.groupCollapsed('[tunk-debug]: ' + hook);
+                                for(var i=0; i<args.length; i++){
+                                    console.log(args[i]);
+                                }
+                                console.groupEnd('[tunk-debug]: ' + hook);
                             }
-                            console.groupEnd('[tunk-debug]: ' + hook);
+                            
                         }
                         return origin.apply(null, arguments);
                     }
