@@ -1,29 +1,34 @@
-# tunk-debug
-
-tunk开发的debug工具，可全局或精确配置到debug某个方法，设置了 debug:true 之后的动作执行，在console中会有相应详细信息输出
+## tunk-debug
 
 
-## Usage
-````shell
+tunk开发的debug工具，设置了 debug:true 之后的动作执行，在console中会有相应详细信息输出
+
+
+### 安装 
+````javascript 
 npm install tunk-debug
-````
+```` 
+
+### 引用
 ````javascript
 import tunkDebug from 'tunk-debug'
 tunk.use([tunkDebug]);
 ````
-## Config
-#### debug:[true | false] default: false 
+
+## 启用配置
+#### debug:[true | false | Array] default: false 
 ````javascript
-// 全局配置debug，默认为 false
+
+// 1、全局配置debug，作用到所有模块和action
 tunk.config({debug:true});
 
-// 精确到模块配置是否debug
+// 2、针对模块配置，仅作用于该模块，及该模块的所有action
 @create({debug: true})
 class demo {
     constructor(){
         ....
     }
-    // 精确到某个动作配置是否debug
+    // 3、针对ation配置，仅作用于该action
     @action({debug:false})
     sayHi(){
         ...
@@ -32,8 +37,18 @@ class demo {
 }
 
 ````
- 
 
+#### 当debug为Array时，元素取值为hooks名，仅打出传入的hooks
 
+> 本插件会在console打印出所有hooks名
 
- 
+````javascript
+tunk.config({debug: ['setState', 'getState']});
+````
+
+----
+
+[tunk doc](https://github.com/tunkjs/gitbook-tunkjs)
+
+[examples](https://github.com/tunkjs/examples)
+

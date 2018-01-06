@@ -3,6 +3,7 @@
     function debug(utils) {
         var tunk = this;
         var hooks = Object.keys(utils.hooks);
+        console.log('[tunk-debug]: All hook names: ', hooks.join(','));
         for (var i = 0; i < hooks.length; i++) {
             (function(hook){
                 utils.hook(hook, function (origin) {
@@ -11,20 +12,10 @@
                         if (debug) {
                             if(debug && typeof debug === 'object'){
                                 if(debug[hook] || debug.constructor === Array && debug.indexOf(hook) > -1){
-                                    var args = Array.prototype.slice.call(arguments, 0, arguments.length), toShow = [];
-                                    console.groupCollapsed('[tunk-debug]: ' + hook);
-                                    for(var i=0; i<args.length; i++){
-                                        console.log(args[i]);
-                                    }
-                                    console.groupEnd('[tunk-debug]: ' + hook);
+                                    consoleLog(arguments, hook);
                                 }
                             } else {
-                                var args = Array.prototype.slice.call(arguments, 0, arguments.length), toShow = [];
-                                console.groupCollapsed('[tunk-debug]: ' + hook);
-                                for(var i=0; i<args.length; i++){
-                                    console.log(args[i]);
-                                }
-                                console.groupEnd('[tunk-debug]: ' + hook);
+                                consoleLog(arguments, hook);
                             }
                             
                         }
@@ -32,6 +23,15 @@
                     }
                 });
             })(hooks[i]);
+        }
+        
+        function consoleLog(args, hook){
+            args = Array.prototype.slice.call(args, 0, args.length);
+            console.groupCollapsed('[tunk-debug]: ' + hook);
+            for(var i=0; i<args.length; i++) {
+                console.log(args[i]);
+            }
+            console.groupEnd('[tunk-debug]: ' + hook);
         }
     }
 
